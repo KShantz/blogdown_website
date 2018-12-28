@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.2.0">
+  <meta name="generator" content="Hugo 0.52" />
+  <meta name="author" content="Kailen Shantz">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="&#43;&#43;&#43; title = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo;
+date = 2018-09-09T00:00:00
+lastmod = 2018-09-09T00:00:00 draft = false # Is this a draft? true/false toc = true # Show table of contents? true/false type = &ldquo;docs&rdquo; # Do not modify.
+Add menu entry to sidebar. linktitle = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo; [menu.tutorial] parent = &ldquo;GAMMs&rdquo; weight = 1 &#43;&#43;&#43;
+knitr::opts_chunk$set(echo = FALSE) library(ggplot2) library(mgcv) library(itsadug) #### Set working directory to the &quot;GAMs Tutorial&quot; folder setwd(&quot;/Users/kailenshantz/Desktop/School/Grad_School/PhD/EEG Group/GAMs Tutorial/&quot;)  Introducton to Generalized Additive Models (GAMs)  GAMs are a semi-parametric extension of linear models Linear models assume a linear relationship between the dependent variable and independent variables GAMs relax this assumption and allow non-linear smooths without the need to pre-specify the shape of the smooth GAMs still assume that model residuals are normally distributed  library(ggplot2) set.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/tutorial/gams-tutorial-slides/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Kailen Shantz, PhD">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Kailen Shantz, PhD">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/tutorial/gams-tutorial-slides/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@KailenShantz">
+  <meta property="twitter:creator" content="@KailenShantz">
+  
+  <meta property="og:site_name" content="Kailen Shantz, PhD">
+  <meta property="og:url" content="/tutorial/gams-tutorial-slides/">
+  <meta property="og:title" content="GA(M)Ms Tutorial | Kailen Shantz, PhD">
+  <meta property="og:description" content="&#43;&#43;&#43; title = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo;
+date = 2018-09-09T00:00:00
+lastmod = 2018-09-09T00:00:00 draft = false # Is this a draft? true/false toc = true # Show table of contents? true/false type = &ldquo;docs&rdquo; # Do not modify.
+Add menu entry to sidebar. linktitle = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo; [menu.tutorial] parent = &ldquo;GAMMs&rdquo; weight = 1 &#43;&#43;&#43;
+knitr::opts_chunk$set(echo = FALSE) library(ggplot2) library(mgcv) library(itsadug) #### Set working directory to the &quot;GAMs Tutorial&quot; folder setwd(&quot;/Users/kailenshantz/Desktop/School/Grad_School/PhD/EEG Group/GAMs Tutorial/&quot;)  Introducton to Generalized Additive Models (GAMs)  GAMs are a semi-parametric extension of linear models Linear models assume a linear relationship between the dependent variable and independent variables GAMs relax this assumption and allow non-linear smooths without the need to pre-specify the shape of the smooth GAMs still assume that model residuals are normally distributed  library(ggplot2) set."><meta property="og:image" content="/img/Headshot_BW.jpg">
+  <meta property="og:locale" content="en-us">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title>GA(M)Ms Tutorial | Kailen Shantz, PhD</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Kailen Shantz, PhD</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>Tutorials</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/KailenShantz_CV.pdf">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/Shantz_resume_2018.pdf">
+            
+            <span>Resume</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">GA(M)Ms Tutorial</h1>
+
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Kailen Shantz">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="" itemprop="datePublished">
+    <time datetime="" itemprop="dateModified">
+      0001
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Kailen Shantz">
+  </span>
+
+  
+
+  
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=GA%28M%29Ms%20Tutorial&amp;url=%2ftutorial%2fgams-tutorial-slides%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2ftutorial%2fgams-tutorial-slides%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2ftutorial%2fgams-tutorial-slides%2f&amp;title=GA%28M%29Ms%20Tutorial"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2ftutorial%2fgams-tutorial-slides%2f&amp;title=GA%28M%29Ms%20Tutorial"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=GA%28M%29Ms%20Tutorial&amp;body=%2ftutorial%2fgams-tutorial-slides%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>+++
+title = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo;</p>
+
+<p>date = 2018-09-09T00:00:00</p>
+
+<h1 id="lastmod-2018-09-09t00-00-00">lastmod = 2018-09-09T00:00:00</h1>
+
+<p>draft = false  # Is this a draft? true/false
+toc = true  # Show table of contents? true/false
+type = &ldquo;docs&rdquo;  # Do not modify.</p>
+
+<h1 id="add-menu-entry-to-sidebar">Add menu entry to sidebar.</h1>
+
+<p>linktitle = &ldquo;GA(M)Ms for Event-Related Potentials&rdquo;
+[menu.tutorial]
+  parent = &ldquo;GAMMs&rdquo;
+  weight = 1
++++</p>
+
+<pre><code class="language-r">knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(mgcv)
+library(itsadug)
+
+#### Set working directory to the &quot;GAMs Tutorial&quot; folder
+setwd(&quot;/Users/kailenshantz/Desktop/School/Grad_School/PhD/EEG Group/GAMs Tutorial/&quot;)
+</code></pre>
+
+<h1 id="introducton-to-generalized-additive-models-gams">Introducton to Generalized Additive Models (GAMs)</h1>
+
+<ul>
+<li>GAMs are a semi-parametric extension of linear models</li>
+<li>Linear models assume a linear relationship between the dependent variable and independent variables</li>
+<li>GAMs relax this assumption and allow non-linear smooths without the need to pre-specify the shape of the smooth</li>
+<li>GAMs still assume that model residuals are normally distributed</li>
+</ul>
+
+<pre><code class="language-r,">library(ggplot2)
+set.seed(123455)
+#Randomly Generate Polynomial Data
+beta_0 = 4
+
+x1 =  rep(seq(-20,20,by=.5))
+
+py = beta_0 + 2*x1^3 +3*x1^2 +2*x1 + rnorm(length(x1),sd=1.5)
+
+dat = data.frame(py=py,x=x1)   
+</code></pre>
+
+<h1 id="modeling-non-linear-effects">Modeling non-linear effects</h1>
+
+<pre><code class="language-r">ggplot(dat, aes(x=x1, y=py)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;X&quot;) + ylab(&quot;Y&quot;)
+</code></pre>
+
+<h1 id="fit-a-simple-linear-model">Fit a simple linear model</h1>
+
+<pre><code class="language-r">ggplot(dat, aes(x=x1, y=py)) +
+  geom_point(shape=1) +      # Use hollow circles
+  geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;X&quot;) + ylab(&quot;Y&quot;)
+</code></pre>
+
+<h1 id="fit-a-linear-model-with-a-quadratic-term">Fit a linear model with a quadratic term</h1>
+
+<pre><code class="language-r">ggplot(dat, aes(x=x1, y=py)) +
+  geom_point(shape=1) +      # Use hollow circles
+  geom_smooth(method=&quot;lm&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;X&quot;) + ylab(&quot;Y&quot;)
+</code></pre>
+
+<h1 id="fit-a-linear-model-with-a-cubic-term">Fit a linear model with a cubic term</h1>
+
+<pre><code class="language-r">ggplot(dat, aes(x=x1, y=py)) +
+  geom_point(shape=1) +      # Use hollow circles
+  geom_smooth(method=&quot;lm&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;X&quot;) + ylab(&quot;Y&quot;)
+</code></pre>
+
+<pre><code class="language-r,"># Import single participant averaged data for a look at more complicated non-linearity
+Dat.2 &lt;- read.delim(&quot;LRPDat_201.txt&quot;, header=T)
+</code></pre>
+
+<h1 id="a-more-complicated-scenario">A more complicated scenario</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="let-s-try-a-simple-linear-model">Let&rsquo;s try a simple linear model</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="how-about-a-quadratic-term">How about a quadratic term?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="cubic">Cubic?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 3, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="quartic">Quartic?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 4, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="fifth-order-polynomial">Fifth order polynomial?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 5, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="sixth-order-polynomial">Sixth order polynomial?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 6, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="seventh-order-polynomial">Seventh order polynomial?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 7, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="eighth-order-polynomial">Eighth order polynomial?</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 8, raw=TRUE),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="gams-can-help">GAMs can help</h1>
+
+<ul>
+<li>Don&rsquo;t require a polynomial term to be specified</li>
+<li>Instead, we specify &ldquo;knots&rdquo;, which tell the model the maximum number of polynomials to fit to a smooth</li>
+<li>Protect against overfitting by penalizing for added wiggliness if an additional parameter does not add enough new information</li>
+<li><strong>This does not mean that a GAM CAN&rsquo;T overfit!</strong></li>
+</ul>
+
+<h1 id="gam-with-10-knots">GAM with 10 knots</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;gam&quot;, formula = y ~ s(x, k=10),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="gam-with-10-knots-1">GAM with 10 knots</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  #stat_smooth(method = &quot;gam&quot;, formula = y ~ s(x, k=10),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;) + geom_vline(xintercept=c(60, 180, 330, 470, 555, 680, 800, 890))
+</code></pre>
+
+<h1 id="gam-with-10-knots-2">GAM with 10 knots</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;gam&quot;, formula = y ~ s(x, k=10),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;) + geom_vline(xintercept=c(60, 180, 330, 470, 555, 680, 800, 890))
+</code></pre>
+
+<h1 id="gam-with-20-knots">GAM with 20 knots</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;gam&quot;, formula = y ~ s(x, k=20),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="gam-with-100-knots">GAM with 100 knots</h1>
+
+<pre><code class="language-r">ggplot(Dat.2, aes(x=Time, y=-MeanAmplitude)) +
+  geom_point(shape=1) +      # Use hollow circles
+  #geom_smooth(method=&quot;lm&quot;)+
+  #stat_smooth(method = &quot;lm&quot;, formula = y ~ poly(x, 2, raw=TRUE),colour=&quot;green&quot;)+
+  stat_smooth(method = &quot;gam&quot;, formula = y ~ s(x, k=100),colour=&quot;red&quot;)+
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics">Fitting GAMS in R: the basics</h1>
+
+<pre><code class="language-r,"># Install and load the following packages:
+install.packages(c(&quot;mgcv&quot;, &quot;itsadug&quot;, &quot;visreg&quot;))
+library(mgcv)
+# Necessary for fitting gams
+library(itsadug) 
+# Not necessary, but helpful for time series data
+library(visreg) 
+# Not necessary, but helpful for visualizing GAM results
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-1">Fitting GAMs in R: the basics</h1>
+
+<ul>
+<li>There are 3 options for fitting a GAM:</li>
+<li>gam</li>
+<li>gamm</li>
+<li>Uses an identity link function and is thus often slower and less robust than &lsquo;gam&rsquo;</li>
+<li>bam</li>
+<li>Specifically for large datasets containing &ldquo;upwards of several tens of thousands of data&rdquo;</li>
+</ul>
+
+<h1 id="fitting-gams-in-r-the-basics-2">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Read in example dataset &quot;LRPDAt.txt&quot;
+LRP.Dat &lt;- read.delim(&quot;LRPDat.txt&quot;, header=T, sep=&quot;\t&quot;)
+head(LRP.Dat[,c(2,6:9)])
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-3">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,">summary(LRP.Dat[,c(2,6:9)])
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-4">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r">ggplot(LRP.Dat, aes(x=Time, y=-MeanAmplitude, color=interaction(GoNoGo,HandCondition))) +
+  geom_point(shape=1) +      # Use hollow circles
+  xlab(&quot;Time&quot;) + ylab(&quot;Mean Amplitude&quot;) + labs(color=&quot;Condition&quot;)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-5">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Modeling a single smooth
+gam1 &lt;- gam(MeanAmplitude~s(Time), data=LRP.Dat)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-6">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Model output
+summary(gam1)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-7">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Adding intercepts
+gam2 &lt;- gam(MeanAmplitude~s(Time) + GoNoGo, data=LRP.Dat)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-8">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Model output
+summary(gam2)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-9">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Adding interactions
+gam3 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo) 
+  + GoNoGo, data=LRP.Dat)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-10">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Model output
+summary(gam3)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-11">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Adding random effects
+  # IMPORTANT: If subjects or items are coded
+  # as numbers, make sure these are converted to
+  # factors! GAMs will not do this automatically.
+gam4 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo) 
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-12">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Model output
+summary(gam4)
+</code></pre>
+
+<pre><code class="language-r,"># Add in age for an example of continuous interactions
+Age &lt;- c(29,32,25,23,28,25,24,24,24,22,20,24,22,21,24,23,22,22,34,22)
+LRP.Dat$Age &lt;- rep(rep(Age, each=4), times=(24000/80))
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-13">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Adding continous interactions
+gam5 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo)
+  + ti(Time, Age, by=GoNoGo) + s(Age, by=GoNoGo)
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-the-basics-14">Fitting GAMs in R: the basics</h1>
+
+<pre><code class="language-r,"># Model output
+summary(gam5)
+</code></pre>
+
+<h1 id="fitting-gams-in-r-making-choices">Fitting GAMs in R: making choices</h1>
+
+<ul>
+<li>When we fit GAMS, we have to make choices about:</li>
+<li>How many knots to use</li>
+<li>What kind smooth to use</li>
+<li>What kind of basis to use</li>
+</ul>
+
+<h1 id="selecting-an-appropriate-number-of-knots">Selecting an appropriate number of knots</h1>
+
+<blockquote>
+<ul>
+<li>The maximum number of possible knots = the number of data points in a smooth</li>
+<li>A good starting point is to fit a model with the default number of knots</li>
+<li>Look at model output and compare the edf to the number of knots (you can also use the gam.check() function for more information)</li>
+<li>If the edf is close to k, increase the number of knots</li>
+</ul>
+</blockquote>
+
+<h1 id="selecting-an-appropriate-number-of-knots-1">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam.check(gam4)
+# edf for the first two parameters are quite close to k
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-2">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,"># Try increasing k
+gam4.2 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo, k=15) 
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-3">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam.check(gam4.2)
+# edf is still quite close to k
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-4">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam4.3 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo, k=20) 
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-5">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam.check(gam4.3)
+# edf is still quite close to k
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-6">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,"># Let's go crazy and try k=50
+gam4.4 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo, k=50) 
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-7">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam.check(gam4.4)
+# k-index &gt;1 but edf still close to k
+# Do we keep going?
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-8">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,"># Let's see what happens at k=70
+gam4.5 &lt;- gam(MeanAmplitude~s(Time, by=GoNoGo, k=70) 
+  + GoNoGo + s(Time, Subject, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="selecting-an-appropriate-number-of-knots-9">Selecting an appropriate number of knots</h1>
+
+<pre><code class="language-r,">gam.check(gam4.5)
+# edf is no longer too close to k
+# So are we good? We'll come back to this.
+</code></pre>
+
+<h1 id="selecting-an-appropriate-smooth">Selecting an appropriate smooth</h1>
+
+<blockquote>
+<ul>
+<li>For our purposes, there are 3 smooth parameters we may want to use:</li>
+<li><strong>1. s()</strong></li>
+<li>For single predictors: e.g. s(Time)</li>
+<li>For interactions of continuous predictors on the same scale: e.g. s(Age, AoA)</li>
+<li><em>Does not include main effects if interaction</em></li>
+<li><strong>2. te()</strong></li>
+<li>For interactions of continuous variables not on the same scale: e.g. te(Time, Age)</li>
+<li><em>Includes main effects</em></li>
+<li><strong>3. ti()</strong></li>
+<li>For interactions of continuous variables not on the same scale: e.g. ti(Time, Age)</li>
+<li><em>Does not include main effects</em></li>
+<li><strong>If you want to fit a model with interpretable interactions and main effects, use ti(), not te(). The output is more stable and more straightforward to interpret</strong></li>
+</ul>
+</blockquote>
+
+<h1 id="a-note-on-continuous-interactions">A note on continuous interactions</h1>
+
+<blockquote>
+<ul>
+<li>These require a lot of data. So think carefully about what interactions you may want to test and how important they are.</li>
+<li>There is the potential problem of concurvity - essentantially the non-linear analogue to collinearity.</li>
+<li>This can be assessed using the function: concurvity()</li>
+<li>Note, however, that the extent to which concurvity is or is not an issue is unresolved in the literature.</li>
+</ul>
+</blockquote>
+
+<h1 id="selecting-an-appropriate-basis">Selecting an appropriate basis</h1>
+
+<blockquote>
+<ul>
+<li><strong>Generally, you can probably just use the defaults. These are:</strong></li>
+<li>tp (thin plate spline) for s()</li>
+<li>cr (cubic regression spline) for te() and ti()</li>
+<li><em>But there are other basis functions available, each of which comes with its own advantages and disadvantages. For more on these, see Wood (2006, pp. 226)</em></li>
+<li><strong>For random effects, use:</strong></li>
+<li>bs=&ldquo;re&rdquo; for random intercepts and slopes <em>Note: If you are including a random smooth for a variable, you should not include its intercept for issues with model identifiability. Random slopes already include adjustments for intercepts and slopes</em></li>
+<li>bs=&ldquo;fs&rdquo; for random smooths</li>
+</ul>
+</blockquote>
+
+<h1 id="important-considerations-when-selecting-knots-smooths-and-basis-functions">Important considerations when selecting knots, smooths and basis functions</h1>
+
+<blockquote>
+<ul>
+<li><strong>Do not engage in model building procedures for hypothesis testing!</strong></li>
+<li>This will bias estimates and increase the researcher degrees of freedom</li>
+<li>Nested models are not directly comparable because GAMs will fit different smooths to parameters as you add other paramaters</li>
+<li>edfs may change as you add parameters, account for random effects, and account for autocorrelation. <em>So don&rsquo;t waste your time optimizing knots on incomplete models</em></li>
+<li><strong>Do not try to optimize the fit of your model by trying different smooths</strong></li>
+<li>Select smooths and basis functions on the basis of your research question and what is appropriate for your data.</li>
+<li>Only attempt alternate smooths or basis functions if there are problems with model fit or convergence</li>
+</ul>
+</blockquote>
+
+<h1 id="fitting-gams-in-r-time-series-data">Fitting GAMS in R: time series data</h1>
+
+<blockquote>
+<ul>
+<li>When there is temporal (or spatial) dependency among data points, the data are said to be autocorrelated</li>
+<li>e.g. The mean amplitude of a waveform at 100 ms post-stimulus onset is dependent on the mean amplitude of that waveform at 99 ms post-stimulus onset (and 98 ms, 97 ms, etc.)</li>
+<li>When data are autocorrelated, we violate model assumptions because:</li>
+<li>1. There is no independence of observations.</li>
+<li>2. Model residuals are serially correlated (i.e. error are not random).</li>
+<li>Consequently, your model may underestimate standard errors, which can inflate Type I error rates</li>
+</ul>
+</blockquote>
+
+<h1 id="let-s-take-a-look">Let&rsquo;s take a look</h1>
+
+<pre><code class="language-r,">gam.check(gam5)
+</code></pre>
+
+<h1 id="how-to-model-time-series-data-with-gams-roughly">How to model time series data with GAMs (roughly)</h1>
+
+<ol>
+<li>Detrend the data (i.e. fit the fixed effects)</li>
+<li>Model the autocorrelation</li>
+<li>In essence, we want to be able to isolate and model the effects of time on our data</li>
+</ol>
+
+<h1 id="first-some-data-wrangling">First, some data wrangling</h1>
+
+<pre><code class="language-r,"># In order to model the autocorrelation in your data, you will need to be able to tell R where the unique trials (or bins) are.
+# the itsadug package can help us here
+LRP.Dat &lt;- start_event(data=LRP.Dat, event=c(&quot;Subject&quot;, &quot;HandCondition&quot;, &quot;GoNoGo&quot;))
+</code></pre>
+
+<h1 id="higher-order-interactions-with-factors">Higher order interactions with factors</h1>
+
+<pre><code class="language-r,"># GAMS can only include two factors in an interaction for a smooth term.
+# To model higher order interactions with more than two factors, we can create a new vector that specifies the unique 
+# levels of that interaction, and include this in our model:
+LRP.Dat$GoNoGo_Hand_Interaction &lt;- interaction(LRP.Dat$GoNoGo, LRP.Dat$HandCondition)
+</code></pre>
+
+<h1 id="an-important-note-on-including-higher-order-interactions-in-random-smooths">An important note on including higher order interactions in random smooths</h1>
+
+<blockquote>
+<ul>
+<li>Some researchers have been modeling random smooths for each unique combination of an interaction with, e.g. item or subject</li>
+<li>E.g., Meulman et al. (2015) in PLoS include the term s(Time, SubjGramStruc, bs=&ldquo;fs&rdquo;, m=1)</li>
+<li>This is like modeling s(Time, SubjGoNoGoHandInteraction, bs=&ldquo;fs&rdquo;, m=1)</li>
+<li><strong>Don&rsquo;t do this!</strong></li>
+<li>This essentially overfits the model by fitting a smooth to each unique combination of these factor levels.</li>
+<li>What we actually to know, though, is how the general interaction of, e.g. GoNoGo and HandCondition varies subject to subject.</li>
+</ul>
+</blockquote>
+
+<pre><code class="language-r,">LRP.Dat$BadInteraction &lt;- interaction(LRP.Dat$Subject, LRP.Dat$GoNoGo, LRP.Dat$HandCondition)
+
+gam.bad &lt;- bam(MeanAmplitude~s(Time, by=GoNoGo) + s(Time, by=HandCondition) 
+  + GoNoGo*HandCondition + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, BadInteraction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+
+gam.good &lt;- bam(MeanAmplitude~GoNoGo*HandCondition 
+  + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="step-1-fit-a-model">Step 1: Fit a model</h1>
+
+<pre><code class="language-r,">m1 &lt;- bam(MeanAmplitude~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="step-2-inspect-autocorrelation">Step 2: Inspect autocorrelation</h1>
+
+<pre><code class="language-r,"># What are you looking for is to see if there is a lag at which the ACF and PACF fall within the dashed blue lines.
+# If no such point exists, there may be effects you failed to account for in your model, or you may need to difference the data.
+# To illustrate, first let's look at gam1 that consisted only of a smooth for time
+acf(residuals(gam1))
+pacf(residuals(gam1))
+
+# Clearly this is not a good model. Now compare to m1
+acf(residuals(m1))
+pacf(residuals(m1))
+
+# This is an improvement, but autocorrelation is still a problem.
+</code></pre>
+
+<h1 id="step-3-refit-model-if-important-predictors-are-may-be-missing-or-difference-the-data-and-repeat-step-2">Step 3: Refit model if important predictors are/may be missing, or difference the data, and repeat Step 2</h1>
+
+<pre><code class="language-r,"># In the interest of time, we'll jump to differencing.
+# IMPORTANT: If you are differencing, you MUST have your data organized so that unique time series are identifiable.
+# Another option to try and reduce autocorrelation may be to increase the knots as needed.
+
+# Depending on your research question, an additional step you can take to reduce autocorrelation is to use downsampled data.
+
+library(dplyr)
+# This code differences the data
+LRP.Dat &lt;- LRP.Dat %&gt;% group_by(Subject, GoNoGo_Hand_Interaction) %&gt;% mutate(diff1=c(NA,diff(MeanAmplitude)))
+
+# Now we model the differenced data
+m2 &lt;- bam(diff1~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="inspect-the-autocorrelation-in-the-new-model">Inspect the autocorrelation in the new model.</h1>
+
+<pre><code class="language-r,">acf(residuals(m2))
+pacf(residuals(m2))
+
+# If this still has not fixed the problem, we can iteratively increase the order of the difference.
+
+# Let's also look at the distribution of the residuals
+gam.check(m2)
+
+# This is clearly a lot better than what we saw earlier. But it still doesn't look like we have constance of variance.
+</code></pre>
+
+<h1 id="let-s-try-a-second-order-difference">Let&rsquo;s try a second order difference</h1>
+
+<pre><code class="language-r,">LRP.Dat &lt;- LRP.Dat %&gt;% group_by(Subject, GoNoGo_Hand_Interaction) %&gt;% mutate(diff2=c(NA,NA,diff(MeanAmplitude, difference=2)))
+# Note: for every order of difference you increase, you will need an additional &quot;NA&quot;, as you lose a number of data points in each 
+# time series equal to the order of the difference.
+
+m3 &lt;- bam(diff2~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="inspect-the-acf-and-pacf">Inspect the ACF and PACF</h1>
+
+<pre><code class="language-r,">acf(residuals(m3))
+pacf(residuals(m3))
+</code></pre>
+
+<pre><code class="language-r,">LRP.Dat &lt;- LRP.Dat %&gt;% group_by(Subject, GoNoGo_Hand_Interaction) %&gt;% mutate(diff9=c(NA,NA,NA,NA,NA,NA,NA,NA,NA,diff(MeanAmplitude, difference=9)))
+m10 &lt;- bam(diff9~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<pre><code class="language-r,">LRP.Dat &lt;- LRP.Dat %&gt;% group_by(Subject, GoNoGo_Hand_Interaction) %&gt;% mutate(diff3=c(NA,NA,NA,diff(MeanAmplitude, difference=3)))
+# Note: for every order of difference you increase, you will need an additional &quot;NA&quot;, as you lose a number of data points in each time series equal to the order of the difference.
+
+m4 &lt;- bam(diff3~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat)
+</code></pre>
+
+<h1 id="skipping-ahead">Skipping ahead&hellip;</h1>
+
+<pre><code class="language-r,"># Model with a 3rd order difference
+acf(residuals(m4))
+pacf(residuals(m4))
+
+# This still isn't ideal, but we'll move ahead anyways.
+
+# Let's also look at the residuals again before moving on.
+gam.check(m4)
+
+# This looks a lot better! Clearly we are capturing a good chunk of the autocorrelation.
+</code></pre>
+
+<h1 id="step-4-model-the-autocorrelation">Step 4: Model the autocorrelation</h1>
+
+<pre><code class="language-r,"># Based on the ACF plot, let's take the 3rd lag value for the autocorrelation parameter, rho.
+valRho &lt;- acf(resid(m4), plot=FALSE)$acf[3]
+
+# Fit a model with the rho parameter
+m4.2 &lt;- bam(diff3~GoNoGo_Hand_Interaction + s(Time, by=GoNoGo_Hand_Interaction) 
+  + s(Time, Subject, by=GoNoGo_Hand_Interaction, bs=&quot;fs&quot;, m=1), data=LRP.Dat, AR.start=LRP.Dat$start.event, rho=valRho)
+</code></pre>
+
+<h1 id="inspect-autocorrelation">Inspect autocorrelation</h1>
+
+<pre><code class="language-r,">acf(residuals(m4.2))
+pacf(residuals(m4.2))
+
+# These actually didn't change, which is curious. But when autocorrelation is properly accounted for, these should be shrunk within the dashed blue lines after modeling rho.
+
+# But the distribution of the residuals has changed:
+gam.check(m4.2)
+</code></pre>
+
+<h1 id="moving-on-though">Moving on, though&hellip;</h1>
+
+<ul>
+<li><strong>Interpreting Results</strong></li>
+<li>In the model summary, parametric coefficients and significance estimates are interpreted as they are for linear mixed effects models</li>
+<li>p-values for smooth terms (i.e. the non-parametric model terms) are not significance estimates for an effect of interest (i.e. they won&rsquo;t tell you that there is a significant P600 or N400 effect). These only tell you whether the smooth for a term is significantly different from zero.</li>
+<li>In order to interpret effects, these must be plotted</li>
+</ul>
+
+<h1 id="model-results">Model results</h1>
+
+<pre><code class="language-r,"># Once you've accounted for autocorrelation, you can then look at your results.
+# Because the model above is not actually well-specified, we'll look at an earlier model for demonstrative purposes.
+summary(m1)
+</code></pre>
+
+<h1 id="plotting-options">Plotting options</h1>
+
+<ul>
+<li>There are a number of plotting options available, depending on what you want to plot</li>
+<li>For nonlinear interactions: pvisgam(), fvisgam(), vis.gam() - see documentation for these.</li>
+<li>For other effects: plot(), plot_smooth()</li>
+<li>For examining differences across conditions: plot_diff()</li>
+<li>See also visreg()</li>
+</ul>
+
+<h1 id="example-1-examining-all-conditions">Example 1: Examining all conditions</h1>
+
+<pre><code class="language-r,">plot_smooth(m1, view=&quot;Time&quot;, plot_all=&quot;GoNoGo_Hand_Interaction&quot;, rm.ramef=F, eegAxis = T)
+</code></pre>
+
+<h1 id="plotting-a-single-smooth">Plotting a single smooth</h1>
+
+<pre><code class="language-r,">plot_smooth(m1, view=&quot;Time&quot;, cond=list(GoNoGo_Hand_Interaction=&quot;Go.Phonology&quot;), rm.ranef = F, eegAxis = T)
+</code></pre>
+
+<h1 id="having-a-bar-at-zero-can-be-nice-though">Having a bar at zero can be nice, though</h1>
+
+<pre><code class="language-r,">plot_smooth(m1, view=&quot;Time&quot;, cond=list(GoNoGo_Hand_Interaction=&quot;Go.Phonology&quot;), rm.ranef = F, eegAxis = T, v0=0)
+</code></pre>
+
+<h1 id="identifying-the-lrp-onset">Identifying the LRP onset</h1>
+
+<pre><code class="language-r,"># Once we have a well-fit model and have plotted our data, we can identify the point in time at which the plotted CI does not 
+# overlap with zero as the LRP develops.
+# I can't say for sure, but there is undoubtedly a way to have R do this for you. But you can also eye-ball it using horizontal 
+# lines and the rug at the bottom for help.
+
+plot_smooth(m1, view=&quot;Time&quot;, cond=list(GoNoGo_Hand_Interaction=&quot;Go.Phonology&quot;), rm.ranef = F, eegAxis = T, v0=c(0, 340, 350))
+</code></pre>
+
+<h1 id="comparing-across-conditions">Comparing across conditions</h1>
+
+<pre><code class="language-r,"># We've determined that the phonology go LRP onsets at ~340 ms. Now we need to determine when the gender go LRP onsets
+plot_smooth(m1, view=&quot;Time&quot;, cond=list(GoNoGo_Hand_Interaction=&quot;Go.Gender&quot;), rm.ranef = F, eegAxis = T, v0=c(0, 340, 350))
+
+# It's definitely later. Let's try this:
+plot_smooth(m1, view=&quot;Time&quot;, cond=list(GoNoGo_Hand_Interaction=&quot;Go.Gender&quot;), rm.ranef = F, eegAxis = T, v0=c(0, 364))
+
+# It onsets at ~364 ms. 
+
+# But ok, now what if we wwant to compare across conditions to see where these differ in their amplitude? Here we use the plot_diff function.
+
+# In the code below, we are substracting the phonology go waveform from the gender go waveform. A difference above 
+# zero thus means that there was more negativity in the gender go waveform. A difference below zero means that the 
+# phonology go waveform was more negative.
+plot_diff(m1, view=&quot;Time&quot;, comp=list(GoNoGo_Hand_Interaction=c(&quot;Go.Gender&quot;, &quot;Go.Phonology&quot;)), eegAxis=T, rm.ranef=F)
+
+# Both the plot and the text output show us where the two waveforms differed significantly in their amplitudes. In the plot, we see this in where the CIs do not overlap with zero.
+
+# I have not tried this yet, so I cannot say for sure, but there are almost certainly ways to extract mean amplitudes 
+# and mean amplitude differences using AUC functions.
+</code></pre>
+
+<h1 id="other-applications-of-gams">Other applications of GAMS</h1>
+
+<blockquote>
+<ul>
+<li>GAMs can also be used to model the scalp distributon of an effect over time</li>
+<li>However, this becomes very computationally expensive, and induces spatial autocorrelation into the data</li>
+<li>Handling both temporal and spatial autocorrelation is difficult, if not intractable.</li>
+<li>If modeling the scalp distribution, it&rsquo;s probably best to pick a time-window and model the average effect in that time window in order to take temporal autocorrelation out of the picture</li>
+</ul>
+</blockquote>
+
+<h1 id="concluding-thoughts">Concluding thoughts</h1>
+
+<blockquote>
+<ul>
+<li>GAMs are a powerful and promising approach to modeling EEG data</li>
+<li>The ability to handle non-linear effects and autocorrelation makes them particularly useful for time course data</li>
+<li>However, they are computationally expensive, they can overfit the data if poor choices are made, and it can be difficult and time consuming to adequately model autocorrelation</li>
+<li>Think carefully about whether GAMs are appropriate for your research question, and whether the return is worth the additional time.</li>
+<li>Be careful when making choices about how to fit the model</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/Headshot_BW.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Kailen Shantz</a></h5>
+    <h6 class="card-subtitle">Data Scientist | Linguist</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="mailto:shantz2@illinois.edu" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/KailenShantz" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.ca/citations?user=6Bo8pU4AAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/kshantz" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.linkedin.com/in/kailen-shantz-574b0a104/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://orcid.org/0000-0003-2778-2201" target="_blank" rel="noopener">
+          <i class="ai ai-orcid"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.researchgate.net/profile/Kailen_Shantz" target="_blank" rel="noopener">
+          <i class="ai ai-researchgate"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://publons.com/researcher/1248182/kailen-shantz/" target="_blank" rel="noopener">
+          <i class="ai ai-publons"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
+
+    
+
+  </body>
+</html>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on Kailen Shantz, PhD</title>
+    <link>/publication/</link>
+    <description>Recent content in Publications on Kailen Shantz, PhD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Confronting quasi-separation in logistic mixed effects for linguistic data: A Bayesian approach</title>
+      <link>/publication/quasi-separation/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/quasi-separation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Electrophysiology finds no inherent delay for grammatical gender retrieval in non-native production</title>
+      <link>/publication/no-inherent-delay/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/no-inherent-delay/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event-related brain potentials and language: The N&#39;s and P&#39;s</title>
+      <link>/publication/erps-and-language/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/erps-and-language/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Phrase frequency, proficiency and grammaticality interact in non-native processing: Implications for theories of SLA</title>
+      <link>/publication/phrase-frequency/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/phrase-frequency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Talking out of order: Task order and retrieval of grammatical gender and phonology in lexical access</title>
+      <link>/publication/talking-out-of-order/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/talking-out-of-order/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Are L2 learners pressed for time? Retrieval of grammatical gender information in L2 lexical access</title>
+      <link>/publication/pressed-for-time/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/pressed-for-time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beyond maximal random effects for logistic regression: Moving past convergence problems</title>
+      <link>/publication/beyond-maximal/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/beyond-maximal/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

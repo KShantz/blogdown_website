@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>5 on Kailen Shantz, PhD</title>
+    <link>/publication_types/5/</link>
+    <description>Recent content in 5 on Kailen Shantz, PhD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="/publication_types/5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Event-related brain potentials and language: The N&#39;s and P&#39;s</title>
+      <link>/publication/erps-and-language/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/erps-and-language/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

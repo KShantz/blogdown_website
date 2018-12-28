@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Kailen Shantz, PhD</title>
+    <link>/project/</link>
+    <description>Recent content in Projects on Kailen Shantz, PhD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Anticipation</title>
+      <link>/project/anticipation/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/project/anticipation/</guid>
+      <description>There is a growing consensus in psycholinguistics that humans actively predict during language comprehension. There is evidence that we use a variety of different kinds of linguistic information to anticipate things like what kinds of words are likely to come next in a sentence, what kind of sentence structures are likely, and even fine-grained details about upcoming words themselves. What is not clear, however, is when prediction does and does not occur.</description>
+    </item>
+    
+    <item>
+      <title>Grammatical Gender</title>
+      <link>/project/grammatical-gender/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/project/grammatical-gender/</guid>
+      <description>Learning a second language is hard, but some aspects of a second language are more challenging to master than others. Grammatical gender is one of these things. Adult second language learners in particular have a very difficult time learning the grammatical gender of words and being able to use grammatical gender consistently in comprehension and in production. I want to know why. To that end, I have been conducting research aimed at identifying what factors make grammatical gender so difficult for adults to learn and use in a second language.</description>
+    </item>
+    
+    <item>
+      <title>Methods</title>
+      <link>/project/methods/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/project/methods/</guid>
+      <description>This project serves as an umbrella for any work I&amp;rsquo;ve done that is on methodology (e.g. testing or validating a method, empirically evaluating how well certain methods perform for solving certain problems), work in which I have developed novel methods for testing research questions, or any work of mine that has important methodological implications for how we conduct linguistic research.</description>
+    </item>
+    
+    <item>
+      <title>Second Language Acquisition</title>
+      <link>/project/sla/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/project/sla/</guid>
+      <description>The ability to speak a second language is highly valuable, and while children seem to do this with relative ease, this task is extremely challenging for adults. A major component of my research programme has been to understand why adults struggle to master a second language. To that end, I have conducted research aiming to understand how adults learn and process a second language, and how these processes differ from learning and processing a native language.</description>
+    </item>
+    
+  </channel>
+</rss>
