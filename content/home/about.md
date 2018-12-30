@@ -37,7 +37,7 @@ weight = 5
 
 I am a linguist and an aspiring data scientist. After obtaining a PhD in Linguistics in 2018 from the [Department of Linguistics](http://www.linguistics.illinois.edu) at the [University of Illinois at Urbana-Champaign](http://illinois.edu), I moved to Heidelberg, Germany, where I am now seeking employment as a data scientist.
 
-If you are interested in my data science work, you may wish to visit my LinkedIn or GitHub pages. You can find these by clicking on the corresponding widgets to the left. You can also view my resume by following the Resume link at the top right.
+If you are interested in my data science work, you may wish to visit my LinkedIn or GitHub pages. You can find these by clicking on the corresponding widgets under my picture. You can also view my resume by following the Resume link in the navigation menu.
 
 In my academic work, I have primarily focused on understanding anticipatory language processing in first and second language populations, and on understanding how grammatical gender is acquired, represented and processed in a second language. I have also had a strong focus on methods, both with respect to experiment design and in the selection and application of appropriate statistical methods for data analysis.
 
