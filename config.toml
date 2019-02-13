@@ -349,7 +349,7 @@ enableGitInfo = false
     
   [[menu.main]]
     name = "Resume"
-    url = "files/Shantz_resume_2018.pdf"
+    url = "files/Shantz_Resume_2019.pdf"
     weight = 8
 
 

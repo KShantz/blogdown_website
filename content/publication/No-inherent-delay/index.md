@@ -40,7 +40,7 @@ projects = ["grammatical-gender", "sla"]
 tags = []
 
 # Links (optional).
-#url_pdf = "#"
+url_pdf = "https://www.researchgate.net/publication/331063859_Electrophysiology_finds_no_inherent_delay_for_grammatical_gender_retrieval_in_non-native_production"
 #url_preprint = "#"
 #url_code = "#"
 #url_dataset = "#"
@@ -55,7 +55,7 @@ tags = []
 #url_custom = [{name = "Custom Link", url = "http://example.org"}]
 
 # Digital Object Identifier (DOI)
-doi = ""
+doi = "10.1017/S1366728918001232"
 
 # Does this page contain LaTeX math? (true/false)
 math = true
