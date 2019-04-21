@@ -35,7 +35,7 @@ weight = 5
 
 # About Me
 
-I am a linguist and an aspiring data scientist. After obtaining a PhD in Linguistics in 2018 from the [Department of Linguistics](http://www.linguistics.illinois.edu) at the [University of Illinois at Urbana-Champaign](http://illinois.edu), I moved to Heidelberg, Germany, where I am now seeking employment as a data scientist.
+I am a linguist and a data scientist. After obtaining a PhD in Linguistics in 2018 from the [Department of Linguistics](http://www.linguistics.illinois.edu) at the [University of Illinois at Urbana-Champaign](http://illinois.edu), I moved to Heidelberg, Germany. I now work in Frankfurt am Main as a data scientist with [CONTURN Forward Data Science](https://www.conturn-fds.com).
 
 If you are interested in my data science work, you may wish to visit my LinkedIn or GitHub pages. You can find these by clicking on the corresponding widgets under my picture. You can also view my resume by following the Resume link in the navigation menu.
 
